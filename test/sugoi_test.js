@@ -6,28 +6,28 @@ describe('sugoi', () => {
   describe ('default values', () => {
     const search = () => sugoi.word('MMD艦これ');
 
-    it ('#page should eq 1', () => assert(search().page  === 1));
-    it ('#size should eq 32', () => assert(search().size === 32));
-    it ('#sort should eq -startTime', () => assert(search().sort === '-startTime'));
+    it ('#page should eq 1', () => assert(search()._page  === 1));
+    it ('#size should eq 32', () => assert(search()._size === 32));
+    it ('#sort should eq -startTime', () => assert(search()._sort === '-startTime'));
   });
 
   it ('#word()', () => {
     const search = sugoi.word('MMD艦これ');
 
-    assert(search.word === 'MMD艦これ');
-    assert(search.service === 'video');
-    assert(_.isEqual(search.fields, ['title', 'description', 'tags']));
+    assert(search._word === 'MMD艦これ');
+    assert(search._service === 'video');
+    assert(_.isEqual(search._fields, ['title', 'description', 'tags']));
   });
 
   it ('#tag()', () => {
     const search = sugoi.tag('MMD艦これ');
 
-    assert(search.word === 'MMD艦これ');
-    assert(_.isEqual(search.fields, ['tagsExact']));
+    assert(search._word === 'MMD艦これ');
+    assert(_.isEqual(search._fields, ['tagsExact']));
   });
 
   it ('#them()', () => {
-    const search = sugoi.tag('MMD艦これ').setSort('+startTime');
+    const search = sugoi.tag('MMD艦これ').sort('+startTime');
 
     return search.then(items => {
       const item = items[0];
