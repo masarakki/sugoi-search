@@ -2,7 +2,7 @@
   "name": "sugoi-search",
   "version": "1.0.0",
   "description": "sugoi search client",
-  "main": "lib/index.js",
+  "main": "lib/sugoi.js",
   "scripts": {
     "test": "gulp test",
     "prepublish": "gulp build"
