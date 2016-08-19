@@ -3,8 +3,15 @@ import request from 'request-promise';
 const search = (cond) => {
   const url = cond.url();
   const qs = cond.query();
-  console.log(qs);
-  return request.get({url, qs});
+  return request.get({url, qs, json: true}).then(res => {
+    return res.data.map(content => {
+      return {
+        id: content.contentId,
+        title: content.title,
+        thumbnail: content.thumbnailUrl
+      };
+    });
+  });
 };
 
 const requestFields = ['contentId', 'title', 'thumbnailUrl'];
@@ -36,17 +43,25 @@ class Search {
     };
   }
 
-  page(p) {
-    this.page = p;
+  setService(s) {
+    this.service = s;
+    return this;
   }
 
-  sort(s) {
+  setPage(p) {
+    this.page = p;
+    return this;
+  }
+
+  setSort(s) {
     this.sort = s;
+    return this;
   }
 
   then(callback) {
     return search(this).then(callback);
   }
+
   catch(callback) {
     return search(this).catch(callback);
   }
@@ -55,4 +70,4 @@ class Search {
 export default {
   word: (word) => new Search(word, ['title', 'description', 'tags']),
   tag: (word) => new Search(word, ['tagsExact'])
-}
+};
