@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 import _ from 'lodash';
-import sugoi from '~/src/search';
+import sugoi from '~/src/sugoi';
 
 describe('sugoi', () => {
   describe ('default values', () => {
