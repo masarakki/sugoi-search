@@ -1,8 +1,10 @@
 import request from 'request-promise';
 
+const requestFields = ['contentId', 'title', 'thumbnailUrl'];
 const search = (cond) => {
   const url = cond.url();
   const qs = cond.query();
+
   return request.get({url, qs, json: true}).then(res => {
     return res.data.map(content => {
       return {
@@ -14,47 +16,44 @@ const search = (cond) => {
   });
 };
 
-const requestFields = ['contentId', 'title', 'thumbnailUrl'];
-
 class Search {
   constructor(word, fileds) {
-    this.word = word;
-    this.service = 'video';
-    this.fields = fileds;
-    this.sort = '-startTime';
-    this.order = 'desc';
-    this.page = 1;
-    this.size = 32;
+    this._word = word;
+    this._service = 'video';
+    this._fields = fileds;
+    this._sort = '-startTime';
+    this._page = 1;
+    this._size = 32;
   }
 
   url() {
-    return `http://api.search.nicovideo.jp/api/v2/${this.service}/contents/search`;
+    return `http://api.search.nicovideo.jp/api/v2/${this._service}/contents/search`;
   }
 
   query() {
     return  {
-      q: this.word,
-      targets: this.fields.join(','),
+      q: this._word,
+      targets: this._fields.join(','),
       fields: requestFields.join(','),
-      _sort: this.sort,
-      _offset: this.size * (this.page - 1),
-      _limit: this.size,
+      _sort: this._sort,
+      _offset: this._size * (this._page - 1),
+      _limit: this._size,
       _context: 'npm sugoi-search'
     };
   }
 
-  setService(s) {
-    this.service = s;
+  service(_service) {
+    this._service = _service;
     return this;
   }
 
-  setPage(p) {
-    this.page = p;
+  page(_page) {
+    this._page = _page;
     return this;
   }
 
-  setSort(s) {
-    this.sort = s;
+  sort(_sort) {
+    this._sort = _sort;
     return this;
   }
 
