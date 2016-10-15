@@ -1,6 +1,6 @@
 import request from 'request-promise';
 
-const requestFields = ['contentId', 'title', 'thumbnailUrl'];
+const requestFields = ['contentId', 'title', 'viewCounter', 'mylistCounter', 'commentCounter', 'startTime', 'thumbnailUrl'];
 const search = (cond) => {
   const url = cond.url();
   const qs = cond.query();
@@ -10,7 +10,13 @@ const search = (cond) => {
       return {
         id: content.contentId,
         title: content.title,
-        thumbnail: content.thumbnailUrl
+        thumbnail: content.thumbnailUrl,
+        created_at: content.startTime,
+        counts: {
+          mylist: content.mylistCounter,
+          view: content.viewCounter,
+          comment: content.commentCounter
+        }
       };
     });
   });
