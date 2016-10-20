@@ -31,9 +31,14 @@ describe('sugoi', () => {
 
     return search.then(items => {
       const item = items[0];
+
       assert(items.length === 32);
       assert(item.id === 'sm21231366');
       assert(item.title === '【MMD】駆逐艦島風');
+      assert(item.created_at === '2013-06-29T15:42:04+09:00');
+      assert(typeof item.counts.mylist === 'number');
+      assert(typeof item.counts.view === 'number');
+      assert(typeof item.counts.comment === 'number');
     });
   });
 });
