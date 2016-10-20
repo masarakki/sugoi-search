@@ -26,7 +26,7 @@ describe('sugoi', () => {
     assert(_.isEqual(search._fields, ['tagsExact']));
   });
 
-  it ('#them()', () => {
+  it ('#then()', () => {
     const search = sugoi.tag('MMD艦これ').sort('+startTime');
 
     return search.then(items => {
