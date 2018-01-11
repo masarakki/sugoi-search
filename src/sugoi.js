@@ -1,12 +1,12 @@
-import request from 'request-promise';
+import axios from 'axios';
 
 const requestFields = ['contentId', 'title', 'viewCounter', 'mylistCounter', 'commentCounter', 'startTime', 'thumbnailUrl'];
 const search = (cond) => {
   const url = cond.url();
-  const qs = cond.query();
+  const params = cond.query();
 
-  return request.get({url, qs, json: true}).then(res => {
-    return res.data.map(content => {
+  return axios({url, params, method: 'get'}).then(res => {
+    return res.data.data.map(content => {
       return {
         id: content.contentId,
         title: content.title,
