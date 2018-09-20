@@ -36,6 +36,7 @@ describe('sugoi', () => {
       assert(item.id === 'sm21231366');
       assert(item.title === '【MMD】駆逐艦島風');
       assert(item.created_at === '2013-06-29T15:42:04+09:00');
+      assert(item.tags instanceof Array);
       assert(typeof item.counts.mylist === 'number');
       assert(typeof item.counts.view === 'number');
       assert(typeof item.counts.comment === 'number');

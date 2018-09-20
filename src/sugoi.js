@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const requestFields = ['contentId', 'title', 'viewCounter', 'mylistCounter', 'commentCounter', 'startTime', 'thumbnailUrl'];
+const requestFields = ['contentId', 'title', 'viewCounter', 'mylistCounter', 'commentCounter', 'startTime', 'thumbnailUrl', 'tags'];
 const search = (cond) => {
   const url = cond.url();
   const params = cond.query();
@@ -11,6 +11,7 @@ const search = (cond) => {
         id: content.contentId,
         title: content.title,
         thumbnail: content.thumbnailUrl,
+        tags: content.tags.split(' '),
         created_at: content.startTime,
         counts: {
           mylist: content.mylistCounter,
