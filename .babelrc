@@ -1,4 +1,4 @@
 {
-  "presets": ["es2015", "power-assert"],
-  "plugins": ["babel-root-import"]
+  "presets": ["@babel/preset-env", "power-assert"],
+  "plugins": ["root-import"]
 }
