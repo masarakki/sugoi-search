@@ -35,6 +35,6 @@
     "power-assert": "^1.6.1"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.21.2"
   }
 }
